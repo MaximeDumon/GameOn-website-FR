@@ -30,7 +30,7 @@ img {
   padding-right: 1rem;
 }
 
-.topnav {
+#myTopnav {
   overflow: hidden;
   margin: 3.5%;
 }
@@ -40,7 +40,7 @@ img {
 .main-navbar {
   float: right;
 }
-.topnav a {
+#myTopnav a {
   float: left;
   display: block;
   color: #000000;
@@ -52,56 +52,37 @@ img {
   font-family: Roboto, sans-serif;
 }
 
-.topnav a:hover {
+#myTopnav a:hover,
+#myTopnav a.active {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
 }
 
-.topnav a.active {
-  background-color: #ff0000;
-  color: #ffffff;
-  border-radius: 15px;
-}
-
-.topnav .icon {
+#myTopnav .icon {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .topnav a {
+@media screen and (max-width: 1023px) {
+  #myTopnav a {
     display: none;
   }
-  .topnav a.icon {
+  #myTopnav a.icon {
     float: right;
     display: block;
   }
-}
-
-@media screen and (max-width: 768px) {
-  .topnav.responsive {
+  #myTopnav.responsive {
     position: relative;
   }
-  .topnav.responsive .icon {
+  #myTopnav.responsive .icon {
     position: absolute;
     right: 0;
     top: 0;
   }
-  .topnav.responsive a {
+  #myTopnav.responsive a {
     float: none;
     display: block;
     text-align: left;
-  }
-}
-
-@media screen and (max-width: 540px) {
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
   }
 }
 
@@ -117,10 +98,12 @@ main {
   text-align: justify;
 }
 
-.modal-btn {
-  font-size: 145%;
+#modal-btn {
+  font-size: 100%;
   background: #fe142f;
   display: flex;
+  justify-content: center;
+  align-items: center;
   margin: auto;
   padding: 2em;
   color: #fff;
@@ -129,7 +112,7 @@ main {
   cursor: pointer;
 }
 
-.modal-btn:hover {
+#modal-btn:hover {
   background: #3876ac;
 }
 
@@ -201,6 +184,11 @@ input {
   padding: 8px;
   border: 0.8px solid #ccc;
   outline: none;
+}
+.errorMessage {
+  font-size: small;
+  color: #e54858;
+  text-align: left;
 }
 .text-control {
   margin: 0;
