@@ -15,8 +15,8 @@ function editNav() {
 }
 
 // DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.getElementById("modal-btn");
+const modalbg = document.getElementById("bground");
+const modalBtn = document.querySelector(".modal-btn");
 const closeModalBtn = document.getElementById("close");
 
 const inputFields = document.querySelectorAll(".formData > input");
@@ -53,6 +53,7 @@ function validate() {
 
 /* Function that validates the field value that has been changed and displays a proper error message if not ok */
 function validateField(e) {
+  return;
   let errorMessage = "";
   let regEx;
   let fieldValid = true;

@@ -15,41 +15,41 @@
     />
   </head>
   <body>
-    <header id="myTopnav">
-      <div class="header-logo">
-        <img alt="logo" src="Logo.png" width="auto" height="auto" />
+    <header id="myTopnav" class="topnav">
+      <div id="header-logo">
+        <img alt="logo" src="./Logo.png" />
       </div>
-      <nav class="main-navbar">
-        <a href="#" class="active"><span>Détails de l'évènement</span></a>
-        <a href="#"><span>À propos</span></a>
-        <a href="#"><span>Contact</span></a>
-        <a href="#"><span>Évènements passés</span></a>
+      <nav id="main-navbar">
+        <a href="#" class="active">Détails de l'évènement</a>
+        <a href="#">À propos</a>
+        <a href="#">Contact</a>
+        <a href="#">Évènements passés</a>
         <a href="javascript:void(0);" class="icon" onclick="editNav()">
           <i class="fa fa-bars"></i>
         </a>
       </nav>
     </header>
     <main>
-      <div class="hero-section">
-        <div class="hero-content">
-          <h1 class="hero-headline">
+      <div id="hero-section">
+        <div id="hero-content">
+          <h1>
             Marathon national<br />
             de jeux vidéos
           </h1>
-          <p class="hero-text">
+          <p id="hero-text">
             Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux
             réservations... Places limitées !
           </p>
-          <button id="modal-btn" class="btn-signup">je m'inscris</button>
+          <button class="modal-btn">Je m'inscris</button>
         </div>
-        <div class="hero-img">
+        <div id="hero-img">
           <img src="./bg_img.jpg" alt="img" />
         </div>
       </div>
-      <div class="bground">
-        <div class="content">
+      <div id="bground">
+        <div id="content">
           <span id="close"></span>
-          <div class="modal-body">
+          <div id="modal-body">
             <form
               id="inscriptionForm"
               name="reserve"
@@ -59,7 +59,7 @@
               novalidate
             >
               <div class="formData">
-                <label>Prénom</label><br />
+                <label for="first">Prénom</label><br />
                 <input
                   class="text-control"
                   type="text"
@@ -71,7 +71,7 @@
                 <p class="errorMessage"></p>
               </div>
               <div class="formData">
-                <label>Nom</label><br />
+                <label for="last">Nom</label><br />
                 <input
                   class="text-control"
                   type="text"
@@ -93,7 +93,7 @@
                 <p class="errorMessage"></p>
               </div>
               <div class="formData">
-                <label>Date de naissance</label><br />
+                <label for="birthdate">Date de naissance</label><br />
                 <input
                   class="text-control"
                   type="date"
@@ -104,13 +104,13 @@
                 <p class="errorMessage"></p>
               </div>
               <div class="formData">
-                <label
+                <label for="quantity"
                   >À combien de tournois GameOn avez-vous déjà participé
                   ?</label
                 ><br />
                 <input
-                  type="number"
                   class="text-control"
+                  type="number"
                   id="quantity"
                   name="quantity"
                   min="0"
@@ -118,11 +118,11 @@
                 />
                 <p class="errorMessage"></p>
               </div>
-              <p class="text-label">Quelles villes ?</p>
+              <p id="text-label">Quelle ville ?</p>
               <div class="formData">
                 <input
                   class="checkbox-input"
-                  type="checkbox"
+                  type="radio"
                   id="location1"
                   name="location"
                   value="New York"
@@ -133,7 +133,7 @@
                 >
                 <input
                   class="checkbox-input"
-                  type="checkbox"
+                  type="radio"
                   id="location2"
                   name="location"
                   value="San Francisco"
@@ -144,7 +144,7 @@
                 >
                 <input
                   class="checkbox-input"
-                  type="checkbox"
+                  type="radio"
                   id="location3"
                   name="location"
                   value="Seattle"
@@ -155,7 +155,7 @@
                 >
                 <input
                   class="checkbox-input"
-                  type="checkbox"
+                  type="radio"
                   id="location4"
                   name="location"
                   value="Chicago"
@@ -166,7 +166,7 @@
                 >
                 <input
                   class="checkbox-input"
-                  type="checkbox"
+                  type="radio"
                   id="location5"
                   name="location"
                   value="Boston"
@@ -177,7 +177,7 @@
                 >
                 <input
                   class="checkbox-input"
-                  type="checkbox"
+                  type="radio"
                   id="location6"
                   name="location"
                   value="Portland"
@@ -187,16 +187,9 @@
                   Portland</label
                 >
               </div>
-
               <div class="formData">
-                <input
-                  class="checkbox-input"
-                  type="checkbox"
-                  id="checkbox1"
-                  checked
-                />
-                <p class="errorMessage"></p>
-                <label class="checkbox2-label" for="checkbox1" required>
+                <input class="checkbox-input" type="checkbox" id="checkbox1" />
+                <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
@@ -208,19 +201,14 @@
                 </label>
                 <br />
               </div>
-              <input
-                class="btn-submit"
-                type="submit"
-                class="button"
-                value="C'est parti"
-              />
+              <button class="modal-btn">C'est parti</button>
             </form>
           </div>
         </div>
       </div>
     </main>
     <footer>
-      <p class="copyrights">Copyright 2014 - 2020, GameOn Inc.</p>
+      <p id="copyrights">Copyright 2014 - 2020, GameOn Inc.</p>
     </footer>
     <script src="modal.js"></script>
   </body>
