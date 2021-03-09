@@ -26,6 +26,7 @@ class InscriptionForm {
     this.emailValid = false;
     this.birthDateValid = false;
     this.numberOfCityValid = false;
+    this.cgvChecked = true;
   }
 
   /* Function that validates the field value that has been changed and displays a proper error message if not ok */
@@ -60,6 +61,12 @@ class InscriptionForm {
         if (!this.numberOfCityValid)
           errorMessage = "La quantité doit être comprise en 0 et 99.";
         break;
+      case "checkbox1":
+        this.cgvChecked = value == "on";
+        if (this.cgvChecked)
+          errorMessage =
+            "Veuillez accepter les conditions générales d'utilisation.";
+        break;
       default:
         console.log("Wrong field has been selected!");
     }
@@ -70,7 +77,8 @@ class InscriptionForm {
       this.surnameValid &&
       this.emailValid &&
       this.birthDateValid &&
-      this.numberOfCityValid;
+      this.numberOfCityValid &&
+      this.cgvChecked;
   }
 
   /* Function validate called when submitting the form, it make sure that every field is valid and submit the form if so */
@@ -99,8 +107,11 @@ function closeModal() {
 }
 /* Show the confirmation message after "sending" the inscription form */
 function showConfirmation() {
-  const modalBody = document.getElementById("modal-body");
-  modalBody.innerHTML = "<p>Merci de vous être enregistré !</p>";
+  const modalBody = document.getElementById("inscriptionForm");
+  modalBody.innerHTML =
+    '<p>Merci de vous être enregistré.</br></br></br>A bientôt.</p><button id="closeButton" class="modal-btn">Quitter</button>';
+  const closeButton = document.getElementById("closeButton");
+  closeButton.addEventListener("click", closeModal);
 }
 
 /* Get the form fields to be monitored and validated and create the JS object */
