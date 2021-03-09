@@ -8,7 +8,7 @@ let validationRegEx = {
   email: /^[A-Za-z]{1}\w.+@[A-Za-z]{2,}\.[A-Za-z]{2,}$/,
   birthDate: /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/,
   /* Number of city must be in the 0 - 99 range */
-  numberOfCity: /^\d{2}$/,
+  numberOfCity: /^\d{1,2}$/,
 };
 
 /* Class defining the inscription form and its associated methods */
@@ -83,7 +83,7 @@ class InscriptionForm {
 
   /* Function validate called when submitting the form, it make sure that every field is valid and submit the form if so */
   validate() {
-    event.preventDefault();
+    /* Force the validation of each field in case nothing has been entered in some of them */
     return this.formValid;
   }
 }
@@ -118,6 +118,7 @@ function showConfirmation() {
 const inputFields = document.querySelectorAll(".fieldToValidate");
 let form = new InscriptionForm(inputFields);
 function validate() {
+  event.preventDefault();
   if (form.validate()) showConfirmation();
 }
 // DOM Elements
