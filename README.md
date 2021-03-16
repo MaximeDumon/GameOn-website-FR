@@ -1,5 +1,6 @@
-# Projet GameOn
-1. Forkez ce repo ;
-2. Il est conseillé d'utiliser VisualStudio Code et vous pouvez utiliser Docker, mais ce n'est pas obligatoire ;
-3. Il n'y a aucune dépendance ;
-4. Vous ne devez utiliser que du CSS personnalisé et du JavaScript pur, sans jQuery, Bootstrap ou autre librairie.
+# Projet GameOn forké depuis OpenClassrooms-Student-Center/GameOn-website-FR
+
+Introduction au JavaScript
+Création d'un formulaire d'enregistrement pour un event, avec validation personnalisée des champs
+Il est possibile de réaliser plusieurs enregistrements sans avoir à recharger la page
+Le formulaire est utilisable aussi bien sur mobile que sur desktop
