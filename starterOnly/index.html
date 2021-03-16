@@ -47,9 +47,9 @@
         </div>
       </div>
       <div id="bground">
-        <div id="content">
+        <div class="content">
           <span id="close"></span>
-          <div id="modal-body">
+          <div class="modal-body">
             <form
               id="inscriptionForm"
               name="reserve"
@@ -58,10 +58,10 @@
               onsubmit="return validate();"
               novalidate
             >
-              <div class="formData fieldToValidate">
+              <div class="formData">
                 <label for="first">Prénom</label><br />
                 <input
-                  class="text-control"
+                  class="text-control fieldToValidate"
                   type="text"
                   id="first"
                   name="first"
@@ -70,10 +70,10 @@
                 />
                 <p class="errorMessage"></p>
               </div>
-              <div class="formData fieldToValidate">
+              <div class="formData">
                 <label for="last">Nom</label><br />
                 <input
-                  class="text-control"
+                  class="text-control fieldToValidate"
                   type="text"
                   id="last"
                   name="last"
@@ -81,10 +81,10 @@
                 />
                 <p class="errorMessage"></p>
               </div>
-              <div class="formData fieldToValidate">
+              <div class="formData">
                 <label for="email">E-mail</label><br />
                 <input
-                  class="text-control"
+                  class="text-control fieldToValidate"
                   type="email"
                   id="email"
                   name="email"
@@ -92,10 +92,10 @@
                 />
                 <p class="errorMessage"></p>
               </div>
-              <div class="formData fieldToValidate">
+              <div class="formData">
                 <label for="birthdate">Date de naissance</label><br />
                 <input
-                  class="text-control"
+                  class="text-control fieldToValidate"
                   type="date"
                   id="birthdate"
                   name="birthdate"
@@ -103,13 +103,13 @@
                 />
                 <p class="errorMessage"></p>
               </div>
-              <div class="formData fieldToValidate">
+              <div class="formData">
                 <label for="quantity"
                   >À combien de tournois GameOn avez-vous déjà participé
                   ?</label
                 ><br />
                 <input
-                  class="text-control"
+                  class="text-control fieldToValidate"
                   type="number"
                   id="quantity"
                   name="quantity"
@@ -190,7 +190,7 @@
               </div>
               <div class="formData">
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input fieldToValidate"
                   type="checkbox"
                   id="checkbox1"
                   checked
@@ -199,17 +199,26 @@
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
-                <br />
+                </br>
+                <span id="cgvError" class="errorMessage"></span>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
-                  Je Je souhaite être prévenu des prochains évènements.
+                  Je souhaite être prévenu des prochains évènements.
                 </label>
                 <br />
               </div>
               <button class="modal-btn">C'est parti</button>
             </form>
           </div>
+        </div>
+      </div>
+      <div id="confirmationDialog">
+        <div class="content">
+          <p class="modal-body">
+            Merci,</br> votre enregistrement a bien été pris en compte.</br></br> A bientôt !
+          </p>
+          <button id="confirmation" class="modal-btn">Quitter</button>
         </div>
       </div>
     </main>

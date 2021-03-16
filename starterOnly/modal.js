@@ -20,6 +20,7 @@ class InscriptionForm {
       // Add an event listener for each input field of the form
       element.addEventListener("change", this);
     });
+    this.cgvError = document.getElementById("cgvError");
     this.formValid = false;
     this.nameValid = false;
     this.surnameValid = false;
@@ -27,51 +28,62 @@ class InscriptionForm {
     this.birthDateValid = false;
     this.numberOfCityValid = false;
     this.cgvChecked = true;
+    this.needsReset = false;
   }
 
   /* Function that validates the field value that has been changed and displays a proper error message if not ok */
-  handleEvent() {
-    let errorMessage = "";
-    const value = event.target.value;
-    switch (event.target.id) {
+  handleEvent(e) {
+    let value = e.target.value;
+    switch (e.target.id) {
       case "first":
         this.nameValid = validationRegEx.name.test(value);
         if (!this.nameValid)
-          errorMessage =
+          // <this> is the <input> element which fired the event, the error message is right next to it in the DOM.
+          e.target.nextElementSibling.innerHTML =
             "Veuillez saisir votre prénom (2 caractères minimum commençant par une majuscule) - Lettres uniquement.";
+        else e.target.nextElementSibling.innerHTML = "";
         break;
       case "last":
         this.surnameValid = validationRegEx.name.test(value);
         if (!this.surnameValid)
-          errorMessage =
+          e.target.nextElementSibling.innerHTML =
             "Veuillez saisir votre nom (2 caractères minimum commençant par une majuscule) - Lettres uniquement.";
+        else e.target.nextElementSibling.innerHTML = "";
         break;
       case "email":
         this.emailValid = validationRegEx.email.test(value);
         if (!this.emailValid)
-          errorMessage = "Veuillez saisir une adresse email correcte.";
+          e.target.nextElementSibling.innerHTML =
+            "Veuillez saisir une adresse email correcte.";
+        else e.target.nextElementSibling.innerHTML = "";
         break;
       case "birthdate":
         this.birthDateValid = validationRegEx.birthDate.test(value);
         if (!this.birthDateValid)
-          errorMessage = "Veuillez saisir votre date de naissance.";
+          e.target.nextElementSibling.innerHTML =
+            "Veuillez saisir votre date de naissance.";
+        else e.target.nextElementSibling.innerHTML = "";
         break;
       case "quantity":
         this.numberOfCityValid = validationRegEx.numberOfCity.test(value);
         if (!this.numberOfCityValid)
-          errorMessage = "La quantité doit être comprise en 0 et 99.";
+          e.target.nextElementSibling.innerHTML =
+            "La quantité doit être comprise en 0 et 99.";
+        else e.target.nextElementSibling.innerHTML = "";
         break;
       case "checkbox1":
-        this.cgvChecked = value == "on";
-        if (this.cgvChecked)
-          errorMessage =
+        if (!e.target.checked) {
+          this.cgvChecked = false;
+          this.cgvError.innerHTML =
             "Veuillez accepter les conditions générales d'utilisation.";
+        } else {
+          this.cgvChecked = true;
+          this.cgvError.innerHTML = "";
+        }
         break;
       default:
         console.log("Wrong field has been selected!");
     }
-    // <this> is the <input> element which fired the event, the error message is right next to it in the DOM.
-    event.target.nextElementSibling.innerHTML = errorMessage;
     this.formValid =
       this.nameValid &&
       this.surnameValid &&
@@ -84,9 +96,34 @@ class InscriptionForm {
   /* Function validate called when submitting the form, it make sure that every field is valid and submit the form if so */
   validate() {
     /* Force the validation of each field in case nothing has been entered in some of them */
+    this.fields.forEach((element) => {
+      element.dispatchEvent(new Event("change"));
+    });
     return this.formValid;
   }
 }
+
+/* Get the form fields to be monitored and validated and create the JS object */
+const inputFields = document.querySelectorAll(".fieldToValidate");
+let form = new InscriptionForm(inputFields);
+
+// DOM Elements
+const modalbg = document.getElementById("bground");
+
+// Launch modal event
+const modalBtn = document.querySelector(".modal-btn");
+modalBtn.addEventListener("click", launchModal);
+
+// Close modal event
+const closeModalBtn = document.getElementById("close");
+closeModalBtn.addEventListener("click", closeModal);
+
+const confirmationButton = document.getElementById("confirmation");
+confirmationButton.addEventListener("click", closeConfirmation);
+const modalConfirm = document.getElementById("confirmationDialog");
+
+const modalBody = document.getElementById("inscriptionForm");
+const formContent = modalBody.innerHTML;
 
 /* Function being called for the the drop-down menu on the mobile version of the navigation menu */
 function editNav() {
@@ -107,27 +144,20 @@ function closeModal() {
 }
 /* Show the confirmation message after "sending" the inscription form */
 function showConfirmation() {
-  const modalBody = document.getElementById("inscriptionForm");
-  modalBody.innerHTML =
-    '<p>Merci de vous être enregistré.</br></br></br>A bientôt.</p><button id="closeButton" class="modal-btn">Quitter</button>';
-  const closeButton = document.getElementById("closeButton");
-  closeButton.addEventListener("click", closeModal);
+  closeModal();
+  modalConfirm.style.display = "block";
+  form.needsReset = true;
+}
+function closeConfirmation() {
+  modalConfirm.style.display = "none";
+  if (form.needsReset) {
+    form.fields.forEach((element) => {
+      element.value = "";
+    });
+  }
 }
 
-/* Get the form fields to be monitored and validated and create the JS object */
-const inputFields = document.querySelectorAll(".fieldToValidate");
-let form = new InscriptionForm(inputFields);
 function validate() {
   event.preventDefault();
   if (form.validate()) showConfirmation();
 }
-// DOM Elements
-const modalbg = document.getElementById("bground");
-
-const modalBtn = document.querySelector(".modal-btn");
-// Launch modal event
-modalBtn.addEventListener("click", launchModal);
-
-const closeModalBtn = document.getElementById("close");
-// Close modal event
-closeModalBtn.addEventListener("click", closeModal);
